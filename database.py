@@ -127,10 +127,9 @@ def init_db():
                     db.add(skill)
         
         db.commit()
-        print("Database initialized with categorized skills data")
         
     except Exception as e:
-        print(f"Error initializing database: {e}")
         db.rollback()
+        raise e
     finally:
         db.close()

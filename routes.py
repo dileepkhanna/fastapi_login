@@ -31,19 +31,15 @@ async def login(
     user_service: UserServiceProtocol = Depends(Provide[Container.user_service]),
     db: Session = Depends(get_db)
 ):
-    print(f"Login attempt - UserID: {userid}, Phone: {phone}, Password: {password[:3]}...")
     user = user_service.authenticate(userid, password, phone, db)
-    print(f"Authentication result: {user is not None}")
     
     if user:
-        print(f"User found: {user.name}")
         # Store user info in session
         request.session["user_id"] = user.id
         request.session["user_name"] = user.name
         request.session["userid"] = user.userid
         return RedirectResponse(url="/job-roles", status_code=303)
     else:
-        print("Authentication failed")
         return templates.TemplateResponse("login.html", {
             "request": request, 
             "error": "Invalid credentials"
