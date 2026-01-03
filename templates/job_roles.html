@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Job Roles - Job Portal{% endblock %}
+
+{% block content %}
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+        <span class="navbar-brand">Job Portal</span>
+        <div class="navbar-nav ms-auto">
+            <span class="navbar-text me-3">Welcome, {{ user_name }}!</span>
+            <a class="nav-link" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">Select Your Job Role & Skills</h2>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h5>Job Roles</h5>
+                        <div class="list-group" id="jobRolesList">
+                            {% for role in roles %}
+                            <button type="button" class="list-group-item list-group-item-action job-role-btn" 
+                                    data-role="{{ role }}">
+                                {{ role }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills Container - appears below job roles -->
+                <div class="row mt-4" id="skillsSection" style="display: none;">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 id="skillsTitle">Skills for <span id="selectedRoleName"></span></h5>
+                            <button class="btn btn-sm btn-outline-secondary" id="clearBtn">Clear</button>
+                        </div>
+                        <div id="skillsContainer">
+                            <!-- Skills table will be populated here -->
+                        </div>
+                        
+                        <div class="mt-3">
+                            <h6>Selected Skills:</h6>
+                            <div id="selectedSkills" class="d-flex flex-wrap gap-2">
+                                <!-- Selected skills badges will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

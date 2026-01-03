@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Job Portal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Login / Sign Up</h3>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                
+                {% if success %}
+                <div class="alert alert-success">{{ success }}</div>
+                {% endif %}
+                
+                <form method="post" action="/login" id="loginForm">
+                    <div class="mb-3">
+                        <label for="userid" class="form-label">User ID</label>
+                        <input type="text" class="form-control" id="userid" name="userid" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                    </div>
+                </form>
+                
+                <form method="post" action="/signup" id="signupForm" style="display: none;">
+                    <div class="mb-3">
+                        <label for="signup_name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="signup_name" name="name" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="signup_userid" class="form-label">User ID</label>
+                        <input type="text" class="form-control" id="signup_userid" name="userid" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="signup_password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="signup_password" name="password" required>
+                            <button class="btn btn-outline-secondary" type="button" id="toggleSignupPassword">
+                                <i class="fas fa-eye" id="toggleSignupPasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="signup_phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="signup_phone" name="phone" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success" id="signupSubmitBtn">Create Account</button>
+                        <button type="button" class="btn btn-secondary" id="backToLoginBtn">Back to Login</button>
+                    </div>
+                </form>
+                
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-link" id="showSignupBtn">Don't have an account? Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
